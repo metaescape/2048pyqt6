@@ -3,7 +3,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtGui import QColor, QBrush
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QPushButton
 from PyQt6.QtWidgets import QApplication
 import random
 
@@ -64,7 +63,12 @@ class Game2048(QtWidgets.QWidget):
         self.backgroundBrush = QtGui.QBrush(QtGui.QColor(0xBBADA0))
         self.gridSize = gridSize
         self.post_msg = f"Press r to restart {gridSize}x{gridSize} game, c to clear"
-        self.max_width = 800
+
+        if __name__ == "__main__":
+            self.max_width = 8000
+        else:
+            self.max_width = 800  # for eaf
+
         self.tileMargin = 16
         self.gridOffsetX = self.tileMargin
         self.gridOffsetY = self.panelHeight + self.tileMargin
@@ -244,10 +248,10 @@ class Game2048(QtWidgets.QWidget):
     def keyPressEvent(self, e):
         if e.key() in [Qt.Key.Key_R]:
             self.reset_game()
-        if e.key() in range(0x30, 0x40):  # number keys
+        elif e.key() in range(0x30, 0x40):  # number keys
             self.game_code.append(e.key() - 48)  # 48 is the keycode of 0 key
             self.update()
-        if e.key() in [Qt.Key.Key_Escape, Qt.Key.Key_C]:
+        elif e.key() in [Qt.Key.Key_Escape, Qt.Key.Key_C]:
             self.game_code.clear()
             self.update()
         if not self.gameRunning:
