@@ -12,7 +12,7 @@ A 2048 game implemented in python-pyqt6 that can also run in [EAF](https://githu
 
 h/j/k/l arrow to move
 
-~num~ + r to restart a game with side length ~num~
+`num` + r to restart a game with side length `num`
 
 ## Python
 
