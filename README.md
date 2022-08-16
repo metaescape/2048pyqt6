@@ -1,7 +1,7 @@
- pyQT6 2048
+# pyQT6 2048
 A 2048 game implemented in python-pyqt6 that can also run in [EAF](https://github.com/emacs-eaf/emacs-application-framework)
 
-<img src="./img/eaf-2048.png" alt="Cover" width="80%"/>
+<img src="./img/eaf-2048.png" alt="Cover" width="60%"/>
 
 ## Required packages
 - python3
