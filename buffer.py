@@ -55,7 +55,7 @@ class Tile:
 
 
 class Game2048(QtWidgets.QWidget):
-    def __init__(self, parent, width=340, gridSize=4):
+    def __init__(self, parent, max_width=8000, gridSize=4):
         QtWidgets.QWidget.__init__(self, parent)
         self.game_code = NumberBuffer(fill=gridSize)
         self.gameRunning = False
@@ -63,12 +63,7 @@ class Game2048(QtWidgets.QWidget):
         self.backgroundBrush = QtGui.QBrush(QtGui.QColor(0xBBADA0))
         self.gridSize = gridSize
         self.post_msg = f"Press r to restart {gridSize}x{gridSize} game, c to clear"
-
-        if __name__ == "__main__":
-            self.max_width = 8000
-        else:
-            self.max_width = 800  # for eaf
-
+        self.max_width = max_width
         self.tileMargin = 16
         self.gridOffsetX = self.tileMargin
         self.gridOffsetY = self.panelHeight + self.tileMargin
@@ -358,7 +353,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication([])
     size = 3 if len(sys.argv) == 1 else int(sys.argv[1])
-    g = Game2048(None, 340, size)
+    g = Game2048(None, 8000, size)
     g.show()
     app.exec()
 else:
@@ -367,5 +362,10 @@ else:
     class AppBuffer(Buffer):
         def __init__(self, buffer_id, url, arguments):
             Buffer.__init__(self, buffer_id, url, arguments, False)
-            self.add_widget(Game2048(None, 340, 3))
+            gridsize = 4
+            try:
+                gridsize = int(arguments)
+            except:
+                pass
+            self.add_widget(Game2048(None, 1000, gridsize))
     
