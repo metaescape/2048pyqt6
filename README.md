@@ -17,7 +17,7 @@ h/j/k/l arrow to move
 ## Python
 
 ```shell
-git clone git@github.com:porrige/2048pyqt6.git 2048
+git clone git@github.com:metaescape/2048pyqt6.git 2048
 cd 2048
 python buffer.py 4  # start a 4x4 grid game
 ```
@@ -29,14 +29,14 @@ python buffer.py 4  # start a 4x4 grid game
 - move this repo to the `app` subdirectory of eaf, e.g. "~/.emacs.d/site-lisp/emacs-application-framework/app"
   and rename it to 2048:
 ```shell
-git clone git@github.com:porrige/2048pyqt6.git 2048
+git clone git@github.com:metaescape/2048pyqt6.git 2048
 mv 2048 ~/.emacs.d/site-lisp/emacs-application-framework/app
 ```
 
 or 
 
 ```shell
-git clone git@github.com:porrige/2048pyqt6.git ~/.emacs.d/site-lisp/emacs-application-framework/app/2048
+git clone git@github.com:metaescape/2048pyqt6.git ~/.emacs.d/site-lisp/emacs-application-framework/app/2048
 ```
 
 - add below code in your emacs config:
