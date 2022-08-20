@@ -381,9 +381,12 @@ if __name__ == "__main__":
     import sys
     from minmax import GameManager
     app = QtWidgets.QApplication([])
-    size = 3 if len(sys.argv) == 1 else int(sys.argv[1])
-    # g = Game2048(None, 8000, size)
-    g = GameAuto(None, 8000, size)
+    size = 4 if len(sys.argv) == 1 else int(sys.argv[1])
+
+    if size == 0:
+        g = GameAuto(None, 8000, 4)
+    else:
+        g = Game2048(None, 8000, size)
     g.show()
     app.exec()
 else:
