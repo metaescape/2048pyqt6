@@ -39,6 +39,12 @@ or
 git clone git@github.com:metaescape/2048pyqt6.git ~/.emacs.d/site-lisp/emacs-application-framework/app/2048
 ```
 
+or
+```shell
+cd ~/.emacs.d/site-lisp/emacs-application-framework/
+./install-eaf.py --install 2048
+```
+
 - add below code in your emacs config:
 
 ```Elisp
@@ -47,9 +53,10 @@ git clone git@github.com:metaescape/2048pyqt6.git ~/.emacs.d/site-lisp/emacs-app
 (require 'eaf-2048)
 ```
 
-- M-x eaf-open-2048, chose a gridsie to start
-
+- M-x eaf-open-2048: chose a gridsie to start
+- M-x eaf-open-2048-ai: watch AI play 2048
 
 # original
-https://github.com/jingdao/2048-pyqt 
+QT: https://github.com/jingdao/2048-pyqt 
 
+ai: https://github.com/kcwu/2048-python

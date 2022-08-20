@@ -2,10 +2,9 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtGui import QColor, QBrush
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtWidgets import QApplication
 import random
-
 
 TILE_COLORS = [
     0x999999,
@@ -348,16 +347,50 @@ class Game2048(QtWidgets.QWidget):
                         ),
                     )
 
+def copy_tiles_to_grid(tiles):
+    n = len(tiles)
+    grid = [[None] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if tiles[i][j]:
+                grid[i][j] = tiles[i][j].value
+    return grid
+
+
+class GameAuto(Game2048):
+    def __init__(self, parent, max_width=8000, gridSize=4):
+        Game2048.__init__(self, parent, max_width, gridSize)
+        self.auto_type = "ai"
+        self.mytimer = QTimer(self)
+        self.mytimer.timeout.connect(self.onTimer)
+        self.mytimer.start(200)
+        self.gm = GameManager()
+
+    def keyPressEvent(self, e):
+        pass
+
+    def onTimer(self):
+        if self.auto_type == "random":
+            act = random.choice(["up", "down",  "left", "right"])
+        else:
+            act = self.gm.ai.getNextMove(copy_tiles_to_grid(self.tiles))
+        getattr(self, act)()
+
 
 if __name__ == "__main__":
     import sys
+    from minmax import GameManager
     app = QtWidgets.QApplication([])
     size = 3 if len(sys.argv) == 1 else int(sys.argv[1])
-    g = Game2048(None, 8000, size)
+    # g = Game2048(None, 8000, size)
+    g = GameAuto(None, 8000, size)
     g.show()
     app.exec()
 else:
     from core.buffer import Buffer
+    import importlib
+    mm = importlib.import_module('app.2048.minmax')
+    GameManager = mm.GameManager
 
     class AppBuffer(Buffer):
         def __init__(self, buffer_id, url, arguments):
@@ -367,5 +400,7 @@ else:
                 gridsize = int(arguments)
             except:
                 pass
-            self.add_widget(Game2048(None, 1000, gridsize))
-    
+            if gridsize == 0:
+                self.add_widget(GameAuto(None, 1000, 4))
+            else:
+                self.add_widget(Game2048(None, 1000, gridsize))
