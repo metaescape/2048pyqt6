@@ -20,6 +20,7 @@ h/j/k/l arrow to move
 git clone git@github.com:metaescape/2048pyqt6.git 2048
 cd 2048
 python buffer.py 4  # start a 4x4 grid game
+python buffer.py 0  # watch AI play a 4x4 game
 ```
 
 ## EAF
@@ -54,9 +55,13 @@ cd ~/.emacs.d/site-lisp/emacs-application-framework/
 ```
 
 - M-x eaf-open-2048: chose a gridsie to start
+
 - M-x eaf-open-2048-ai: watch AI play 2048
+e.g. three AI's 2048 competition in emacs
+<img src="./img/eaf-2048-ai.gif" alt="Cover" width="60%"/>
+recorded via [emacs-gif-screencast](https://github.com/Ambrevar/emacs-gif-screencast)
 
 # original
 QT: https://github.com/jingdao/2048-pyqt 
 
-ai: https://github.com/kcwu/2048-python
+AI: https://github.com/kcwu/2048-python

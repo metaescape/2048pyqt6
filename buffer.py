@@ -364,7 +364,7 @@ class GameAuto(Game2048):
         self.mytimer = QTimer(self)
         self.mytimer.timeout.connect(self.onTimer)
         self.mytimer.start(200)
-        self.gm = GameManager()
+        self.ai = AI(self.tiles)
 
     def keyPressEvent(self, e):
         pass
@@ -373,13 +373,13 @@ class GameAuto(Game2048):
         if self.auto_type == "random":
             act = random.choice(["up", "down",  "left", "right"])
         else:
-            act = self.gm.ai.getNextMove(copy_tiles_to_grid(self.tiles))
+            act = self.ai.getNextMove(copy_tiles_to_grid(self.tiles))
         getattr(self, act)()
 
 
 if __name__ == "__main__":
     import sys
-    from minmax import GameManager
+    from minmax import AI
     app = QtWidgets.QApplication([])
     size = 4 if len(sys.argv) == 1 else int(sys.argv[1])
 
@@ -393,7 +393,7 @@ else:
     from core.buffer import Buffer
     import importlib
     mm = importlib.import_module('app.2048.minmax')
-    GameManager = mm.GameManager
+    AI = mm.AI
 
     class AppBuffer(Buffer):
         def __init__(self, buffer_id, url, arguments):
