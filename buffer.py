@@ -86,7 +86,7 @@ class Game2048(QtWidgets.QWidget):
         width = min(e.size().width(),
                     e.size().height() - self.panelHeight,)
         self.tileSize = (width - self.tileMargin * (self.gridSize + 1)) / self.gridSize
-        self.font = QtGui.QFont("Arial", self.tileSize / 4)
+        self.font = QtGui.QFont("Arial", int(self.tileSize / 4))
 
     def reset_game(self):
         code = int(self.game_code) 
